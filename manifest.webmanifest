@@ -1,0 +1,18 @@
+{
+  "name": "Nederlands · B1.2 → C1",
+  "short_name": "Nederlands C1",
+  "description": "Interactieve cursus Nederlands van B1.2 naar C1: spreken, directe feedback, spraakherkenning, beloningen en voortgang.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2ECDD",
+  "theme_color": "#1C1B17",
+  "lang": "nl",
+  "categories": ["education"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

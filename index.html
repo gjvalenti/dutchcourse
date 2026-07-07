@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1C1B17">
+<title>Nederlands · B1.2 → C1</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Nederlands C1">
+<style>
+:root{
+  --ink:#1C1B17; --paper:#F2ECDD; --panel:#FBF7EC; --orange:#D6541F;
+  --delft:#2D4A7A; --delftSoft:#5C7AAE; --green:#3E7D52; --red:#B23A2E;
+  --gold:#C9952B; --line:#D8CEB8; --mute:#6B6453;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button{font-family:inherit}
+button:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--gold);outline-offset:2px
+}
+@keyframes pop{from{transform:translateX(-50%) scale(.8);opacity:0}to{transform:translateX(-50%) scale(1);opacity:1}}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+header.app{background:var(--ink);color:var(--paper);padding:16px 20px;position:sticky;top:0;z-index:20}
+.wrap{max-width:720px;margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--orange);font-weight:700}
+.h1{font-size:22px;font-weight:800;letter-spacing:-.01em}
+main{max-width:720px;margin:0 auto;padding:22px 20px 90px}
+
+.hud{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--panel);
+  border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px;color:var(--ink)}
+.pill.dark{background:var(--delft);color:var(--panel);border:none}
+
+.pbar-head{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);margin-bottom:6px;font-weight:600}
+.pbar{height:14px;background:#E5DCC6;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.pbar > i{display:block;height:100%;border-radius:999px;
+  background:linear-gradient(90deg,var(--delft),var(--delftSoft) 55%,var(--orange));
+  transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+.badge{display:inline-block;border-radius:6px;padding:3px 9px;font-size:12px;
+  font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.lessonbtn{text-align:left;display:flex;align-items:center;gap:14px;width:100%;
+  border-radius:14px;padding:14px 16px;font-family:inherit;border:1.5px solid var(--line);
+  background:var(--panel);cursor:pointer;margin-bottom:10px}
+.lessonbtn .dot{width:34px;height:34px;border-radius:999px;flex-shrink:0;display:grid;
+  place-items:center;font-weight:800;color:#fff;font-size:16px}
+.lessonbtn .ttl{display:block;font-weight:700;color:var(--ink);font-size:16px}
+.lessonbtn .sub{display:block;color:var(--mute);font-size:13px}
+
+.btn{border:none;border-radius:12px;padding:13px;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--orange);color:#fff;width:100%}
+.btn.primary:disabled{background:#CFC7B3;color:var(--mute);cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--delft);border:1.5px solid var(--delft)}
+.spk{display:inline-flex;align-items:center;gap:6px;background:var(--delft);color:var(--panel);
+  border:none;border-radius:999px;cursor:pointer;padding:8px 14px;font-size:14px;font-weight:600}
+.spk.sm{padding:5px 11px;font-size:13px}
+
+textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px;
+  font-size:16px;font-family:inherit;resize:vertical;background:var(--panel)}
+
+.bubble{max-width:85%;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.4}
+.bubble.left{background:var(--panel);color:var(--ink);border:1px solid var(--line);
+  border-bottom-left-radius:4px;align-self:flex-start}
+.bubble.right{background:var(--delft);color:var(--paper);border-bottom-right-radius:4px;align-self:flex-end}
+
+.mic{width:64px;height:64px;border-radius:999px;border:none;cursor:pointer;
+  background:var(--orange);color:#fff;font-size:26px;display:grid;place-items:center;
+  box-shadow:0 6px 18px rgba(214,84,31,.4)}
+.mic.live{animation:pulse 1s infinite;background:var(--red)}
+.mic:disabled{background:#CFC7B3;cursor:not-allowed;box-shadow:none}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);
+  color:var(--paper);padding:12px 22px;border-radius:12px;font-weight:700;z-index:50;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:15px;animation:pop .3s ease}
+
+.link{background:none;border:none;color:var(--delft);cursor:pointer;font-weight:700;
+  font-family:inherit;font-size:13px;padding:0;text-decoration:underline}
+.muted{color:var(--mute)}
+.install{position:fixed;right:16px;bottom:16px;background:var(--delft);color:#fff;border:none;
+  border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;z-index:40;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);display:none}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<button id="installBtn" class="install">⤓ Installeer app</button>
+
+<script src="curriculum.js"></script>
+<script src="app.js"></script>
+<script>
+// ---- Service worker registration ----
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+// ---- Install prompt ----
+let deferredPrompt = null;
+const installBtn = document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault(); deferredPrompt = e; installBtn.style.display='block';
+});
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt(); await deferredPrompt.userChoice;
+  deferredPrompt = null; installBtn.style.display='none';
+});
+window.addEventListener('appinstalled', ()=> installBtn.style.display='none');
+</script>
+</body>
+</html>
